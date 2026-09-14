@@ -121,7 +121,9 @@ def main():
     net_alive = any(prev.values())
     cycles    = 0
     while True:
-        time.sleep(CHECK_EVERY)
+        for _ in range(CHECK_EVERY // 15):
+            time.sleep(15)
+            handle_commands(LAST_RESULT)
         cycles += 1
         try:
             handle_commands(LAST_RESULT)
