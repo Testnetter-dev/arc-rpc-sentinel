@@ -277,6 +277,7 @@ def status_lines(res):
             lines.append(tr("node_ok", name=name, block=r["block"], ms=r["ms"]))
         else:
             lines.append(tr("node_bad", name=name, err=r["err"]))
+        lines.append(f"🔗 {NODES[name]}")
     return "\n".join(lines) if lines else tr("nodes_empty")
 
 def first_alive(res):
@@ -347,7 +348,7 @@ def handle_commands(res):
                 ]
                 if alive:
                     ms, name, block = min(alive)
-                    tg(tr("best_ok", name=name, ms=ms, block=block))
+                    tg(tr("best_ok", name=name, ms=ms, block=block) + "\n🔗 " + NODES[name])
                 else:
                     tg(tr("best_none"))
             elif text == "/lang" or text.startswith("/lang "):
