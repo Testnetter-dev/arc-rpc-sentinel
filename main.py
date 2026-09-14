@@ -25,6 +25,8 @@ HEARTBEAT_EVERY = 12
 
 UPDATE_OFFSET = 0
 LAST_RESULT   = {}
+PREV_STATE    = {}
+NET_ALIVE     = False
 CURRENT_LANG  = "ru"
 LANG_SET      = False
 
@@ -34,9 +36,9 @@ STR = {
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "No nodes in list!",
         "status_header": "📡 Arc node status:\n",
-        "start_help": "Sentinel v2.4. Command: /status — node dashboard",
-        "started_alive": "🟢 Sentinel v2.4 started!",
-        "started_down": "🟡 Sentinel v2.4 started, but ALL nodes are down!",
+        "start_help": "Sentinel v2.5. Commands: /status — node dashboard; /ping — fresh check; /best — fastest node",
+        "started_alive": "🟢 Sentinel v2.5 started!",
+        "started_down": "🟡 Sentinel v2.5 started, but ALL nodes are down!",
         "command_hint": "Command: /status",
         "node_up": "🟢 Node {name} is back! Block {block}, {ms} ms",
         "node_down": "🔴 Node {name} is down! ({err})",
@@ -45,15 +47,17 @@ STR = {
         "heartbeat": "💓 Sentinel alive, cycle #{cycles}\n",
         "lang_bad": "Unknown language. Available codes: {codes}",
         "lang_cur": "Current language: {lang}. Available codes: {codes}",
+        "best_ok": "⚡ Fastest node: {name} — {ms} ms (block {block})",
+        "best_none": "No alive nodes right now.",
     },
     "ru": {
         "node_ok": "🟢 {name}: блок {block}, {ms} мс",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "Список нод пуст!",
         "status_header": "📡 Статус нод Arc:\n",
-        "start_help": "Я Sentinel v2.4. Команда: /status — дашборд нод",
-        "started_alive": "🟢 Sentinel v2.4 запущен!",
-        "started_down": "🟡 Sentinel v2.4 запущен, но ВСЕ ноды уже лежат!",
+        "start_help": "Я Sentinel v2.5. Команды: /status — дашборд нод; /ping — новая проверка; /best — самая быстрая нода",
+        "started_alive": "🟢 Sentinel v2.5 запущен!",
+        "started_down": "🟡 Sentinel v2.5 запущен, но ВСЕ ноды уже лежат!",
         "command_hint": "Команда: /status",
         "node_up": "🟢 Нода {name} ожила! Блок {block}, {ms} мс",
         "node_down": "🔴 Нода {name} умерла! ({err})",
@@ -62,15 +66,17 @@ STR = {
         "heartbeat": "💓 Sentinel жив, цикл #{cycles}\n",
         "lang_bad": "Неверный язык. Доступные коды: {codes}",
         "lang_cur": "Текущий язык: {lang}. Доступные коды: {codes}",
+        "best_ok": "⚡ Самая быстрая нода: {name} — {ms} мс (блок {block})",
+        "best_none": "Сейчас нет живых нод.",
     },
     "zh": {
         "node_ok": "🟢 {name}：区块 {block}，{ms} 毫秒",
         "node_bad": "🔴 {name}：{err}",
         "nodes_empty": "节点列表为空！",
         "status_header": "📡 Arc 节点状态：\n",
-        "start_help": "Sentinel v2.4。命令：/status — 节点面板",
-        "started_alive": "🟢 Sentinel v2.4 已启动！",
-        "started_down": "🟡 Sentinel v2.4 已启动，但所有节点都已宕机！",
+        "start_help": "Sentinel v2.5。命令：/status — 节点面板；/ping — 立即检查；/best — 最快节点",
+        "started_alive": "🟢 Sentinel v2.5 已启动！",
+        "started_down": "🟡 Sentinel v2.5 已启动，但所有节点都已宕机！",
         "command_hint": "命令：/status",
         "node_up": "🟢 节点 {name} 已恢复！区块 {block}，{ms} 毫秒",
         "node_down": "🔴 节点 {name} 已宕机！（{err}）",
@@ -79,15 +85,17 @@ STR = {
         "heartbeat": "💓 Sentinel 运行正常，周期 #{cycles}\n",
         "lang_bad": "未知语言。可用代码：{codes}",
         "lang_cur": "当前语言：{lang}。可用代码：{codes}",
+        "best_ok": "⚡ 最快节点：{name} — {ms} 毫秒（区块 {block}）",
+        "best_none": "当前没有可用节点。",
     },
     "hi": {
         "node_ok": "🟢 {name}: ब्लॉक {block}, {ms} मि.से.",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "नोड सूची खाली है!",
         "status_header": "📡 Arc नोड स्थिति:\n",
-        "start_help": "Sentinel v2.4। कमांड: /status — नोड डैशबोर्ड",
-        "started_alive": "🟢 Sentinel v2.4 शुरू हो गया!",
-        "started_down": "🟡 Sentinel v2.4 शुरू हो गया, लेकिन सभी नोड बंद हैं!",
+        "start_help": "Sentinel v2.5। कमांड: /status — नोड डैशबोर्ड; /ping — तुरंत जांच; /best — सबसे तेज नोड",
+        "started_alive": "🟢 Sentinel v2.5 शुरू हो गया!",
+        "started_down": "🟡 Sentinel v2.5 शुरू हो गया, लेकिन सभी नोड बंद हैं!",
         "command_hint": "कमांड: /status",
         "node_up": "🟢 नोड {name} वापस आ गया! ब्लॉक {block}, {ms} मि.से.",
         "node_down": "🔴 नोड {name} बंद है! ({err})",
@@ -96,15 +104,17 @@ STR = {
         "heartbeat": "💓 Sentinel चालू है, चक्र #{cycles}\n",
         "lang_bad": "अज्ञात भाषा। उपलब्ध कोड: {codes}",
         "lang_cur": "वर्तमान भाषा: {lang}। उपलब्ध कोड: {codes}",
+        "best_ok": "⚡ सबसे तेज नोड: {name} — {ms} मि.से. (ब्लॉक {block})",
+        "best_none": "अभी कोई सक्रिय नोड नहीं है।",
     },
     "es": {
         "node_ok": "🟢 {name}: bloque {block}, {ms} ms",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "¡La lista de nodos está vacía!",
         "status_header": "📡 Estado de los nodos Arc:\n",
-        "start_help": "Sentinel v2.4. Comando: /status — panel de nodos",
-        "started_alive": "🟢 ¡Sentinel v2.4 iniciado!",
-        "started_down": "🟡 Sentinel v2.4 iniciado, ¡pero todos los nodos están caídos!",
+        "start_help": "Sentinel v2.5. Comandos: /status — panel de nodos; /ping — comprobación nueva; /best — nodo más rápido",
+        "started_alive": "🟢 ¡Sentinel v2.5 iniciado!",
+        "started_down": "🟡 Sentinel v2.5 iniciado, ¡pero todos los nodos están caídos!",
         "command_hint": "Comando: /status",
         "node_up": "🟢 ¡El nodo {name} volvió! Bloque {block}, {ms} ms",
         "node_down": "🔴 ¡El nodo {name} está caído! ({err})",
@@ -113,15 +123,17 @@ STR = {
         "heartbeat": "💓 Sentinel activo, ciclo #{cycles}\n",
         "lang_bad": "Idioma desconocido. Códigos disponibles: {codes}",
         "lang_cur": "Idioma actual: {lang}. Códigos disponibles: {codes}",
+        "best_ok": "⚡ Nodo más rápido: {name} — {ms} ms (bloque {block})",
+        "best_none": "No hay nodos activos ahora mismo.",
     },
     "fr": {
         "node_ok": "🟢 {name} : bloc {block}, {ms} ms",
         "node_bad": "🔴 {name} : {err}",
         "nodes_empty": "La liste des nœuds est vide !",
         "status_header": "📡 État des nœuds Arc :\n",
-        "start_help": "Sentinel v2.4. Commande : /status — tableau des nœuds",
-        "started_alive": "🟢 Sentinel v2.4 est lancé !",
-        "started_down": "🟡 Sentinel v2.4 est lancé, mais tous les nœuds sont hors service !",
+        "start_help": "Sentinel v2.5. Commandes : /status — tableau des nœuds ; /ping — nouvelle vérification ; /best — nœud le plus rapide",
+        "started_alive": "🟢 Sentinel v2.5 est lancé !",
+        "started_down": "🟡 Sentinel v2.5 est lancé, mais tous les nœuds sont hors service !",
         "command_hint": "Commande : /status",
         "node_up": "🟢 Le nœud {name} est de nouveau actif ! Bloc {block}, {ms} ms",
         "node_down": "🔴 Le nœud {name} est hors service ! ({err})",
@@ -130,15 +142,17 @@ STR = {
         "heartbeat": "💓 Sentinel est actif, cycle n°{cycles}\n",
         "lang_bad": "Langue inconnue. Codes disponibles : {codes}",
         "lang_cur": "Langue actuelle : {lang}. Codes disponibles : {codes}",
+        "best_ok": "⚡ Nœud le plus rapide : {name} — {ms} ms (bloc {block})",
+        "best_none": "Aucun nœud actif pour le moment.",
     },
     "ar": {
         "node_ok": "🟢 {name}: الكتلة {block}، {ms} مللي ثانية",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "قائمة العقد فارغة!",
         "status_header": "📡 حالة عقد Arc:\n",
-        "start_help": "Sentinel v2.4. الأمر: /status — لوحة العقد",
-        "started_alive": "🟢 تم تشغيل Sentinel v2.4!",
-        "started_down": "🟡 تم تشغيل Sentinel v2.4، لكن جميع العقد متوقفة!",
+        "start_help": "Sentinel v2.5. الأوامر: /status — لوحة العقد؛ /ping — فحص جديد؛ /best — أسرع عقدة",
+        "started_alive": "🟢 تم تشغيل Sentinel v2.5!",
+        "started_down": "🟡 تم تشغيل Sentinel v2.5، لكن جميع العقد متوقفة!",
         "command_hint": "الأمر: /status",
         "node_up": "🟢 عادت العقدة {name}! الكتلة {block}، {ms} مللي ثانية",
         "node_down": "🔴 العقدة {name} متوقفة! ({err})",
@@ -147,15 +161,17 @@ STR = {
         "heartbeat": "💓 Sentinel يعمل، الدورة #{cycles}\n",
         "lang_bad": "لغة غير معروفة. الرموز المتاحة: {codes}",
         "lang_cur": "اللغة الحالية: {lang}. الرموز المتاحة: {codes}",
+        "best_ok": "⚡ أسرع عقدة: {name} — {ms} مللي ثانية (الكتلة {block})",
+        "best_none": "لا توجد عقدة متصلة الآن.",
     },
     "pt": {
         "node_ok": "🟢 {name}: bloco {block}, {ms} ms",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "A lista de nós está vazia!",
         "status_header": "📡 Status dos nós Arc:\n",
-        "start_help": "Sentinel v2.4. Comando: /status — painel de nós",
-        "started_alive": "🟢 Sentinel v2.4 iniciado!",
-        "started_down": "🟡 Sentinel v2.4 iniciado, mas todos os nós estão fora do ar!",
+        "start_help": "Sentinel v2.5. Comandos: /status — painel de nós; /ping — nova verificação; /best — nó mais rápido",
+        "started_alive": "🟢 Sentinel v2.5 iniciado!",
+        "started_down": "🟡 Sentinel v2.5 iniciado, mas todos os nós estão fora do ar!",
         "command_hint": "Comando: /status",
         "node_up": "🟢 O nó {name} voltou! Bloco {block}, {ms} ms",
         "node_down": "🔴 O nó {name} caiu! ({err})",
@@ -164,15 +180,17 @@ STR = {
         "heartbeat": "💓 Sentinel ativo, ciclo #{cycles}\n",
         "lang_bad": "Idioma desconhecido. Códigos disponíveis: {codes}",
         "lang_cur": "Idioma atual: {lang}. Códigos disponíveis: {codes}",
+        "best_ok": "⚡ Nó mais rápido: {name} — {ms} ms (bloco {block})",
+        "best_none": "Não há nós ativos no momento.",
     },
     "ja": {
         "node_ok": "🟢 {name}: ブロック {block}、{ms} ms",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "ノード一覧が空です！",
         "status_header": "📡 Arc ノードの状態：\n",
-        "start_help": "Sentinel v2.4。コマンド：/status — ノードダッシュボード",
-        "started_alive": "🟢 Sentinel v2.4 を起動しました！",
-        "started_down": "🟡 Sentinel v2.4 を起動しましたが、すべてのノードが停止中です！",
+        "start_help": "Sentinel v2.5。コマンド：/status — ノードダッシュボード；/ping — 即時チェック；/best — 最速ノード",
+        "started_alive": "🟢 Sentinel v2.5 を起動しました！",
+        "started_down": "🟡 Sentinel v2.5 を起動しましたが、すべてのノードが停止中です！",
         "command_hint": "コマンド：/status",
         "node_up": "🟢 ノード {name} が復旧しました！ブロック {block}、{ms} ms",
         "node_down": "🔴 ノード {name} が停止しました！（{err}）",
@@ -181,15 +199,17 @@ STR = {
         "heartbeat": "💓 Sentinel は稼働中、サイクル #{cycles}\n",
         "lang_bad": "不明な言語です。利用可能なコード：{codes}",
         "lang_cur": "現在の言語：{lang}。利用可能なコード：{codes}",
+        "best_ok": "⚡ 最速ノード：{name} — {ms} ms（ブロック {block}）",
+        "best_none": "現在、稼働中のノードはありません。",
     },
     "de": {
         "node_ok": "🟢 {name}: Block {block}, {ms} ms",
         "node_bad": "🔴 {name}: {err}",
         "nodes_empty": "Die Node-Liste ist leer!",
         "status_header": "📡 Arc-Node-Status:\n",
-        "start_help": "Sentinel v2.4. Befehl: /status — Node-Dashboard",
-        "started_alive": "🟢 Sentinel v2.4 gestartet!",
-        "started_down": "🟡 Sentinel v2.4 gestartet, aber ALLE Nodes sind ausgefallen!",
+        "start_help": "Sentinel v2.5. Befehle: /status — Node-Dashboard; /ping — neue Prüfung; /best — schnellste Node",
+        "started_alive": "🟢 Sentinel v2.5 gestartet!",
+        "started_down": "🟡 Sentinel v2.5 gestartet, aber ALLE Nodes sind ausgefallen!",
         "command_hint": "Befehl: /status",
         "node_up": "🟢 Node {name} ist wieder da! Block {block}, {ms} ms",
         "node_down": "🔴 Node {name} ist ausgefallen! ({err})",
@@ -198,6 +218,8 @@ STR = {
         "heartbeat": "💓 Sentinel läuft, Zyklus #{cycles}\n",
         "lang_bad": "Unbekannte Sprache. Verfügbare Codes: {codes}",
         "lang_cur": "Aktuelle Sprache: {lang}. Verfügbare Codes: {codes}",
+        "best_ok": "⚡ Schnellste Node: {name} — {ms} ms (Block {block})",
+        "best_none": "Derzeit sind keine Nodes aktiv.",
     },
 }
 
@@ -253,6 +275,27 @@ def first_alive(res):
             return name
     return None
 
+def check_and_alert():
+    global LAST_RESULT, PREV_STATE, NET_ALIVE
+    res = check_all()
+    LAST_RESULT = res
+    cur = {n: r["ok"] for n, r in res.items()}
+    for n in cur:
+        if cur[n] != PREV_STATE.get(n):
+            if cur[n]:
+                tg(tr("node_up", name=n, block=res[n]["block"], ms=res[n]["ms"]))
+            else:
+                tg(tr("node_down", name=n, err=res[n]["err"]))
+    now_net = any(cur.values())
+    if now_net != NET_ALIVE:
+        if now_net:
+            tg(tr("network_up", name=first_alive(res)))
+        else:
+            tg(tr("network_down"))
+        NET_ALIVE = now_net
+    PREV_STATE = cur
+    return res
+
 def flush_old_updates():
     global UPDATE_OFFSET
     try:
@@ -282,7 +325,21 @@ def handle_commands(res):
         text = (msg.get("text") or "").strip()
         if str(chat) == str(CHAT_ID):
             if text == "/status":
+                tg(tr("status_header") + status_lines(LAST_RESULT))
+            elif text == "/ping":
+                res = check_and_alert()
                 tg(tr("status_header") + status_lines(res))
+            elif text == "/best":
+                alive = [
+                    (r["ms"], name, r["block"])
+                    for name, r in LAST_RESULT.items()
+                    if r["ok"]
+                ]
+                if alive:
+                    ms, name, block = min(alive)
+                    tg(tr("best_ok", name=name, ms=ms, block=block))
+                else:
+                    tg(tr("best_none"))
             elif text == "/lang" or text.startswith("/lang "):
                 parts = text.split()
                 codes = ", ".join(STR.keys())
@@ -305,7 +362,7 @@ def handle_commands(res):
                 tg(tr("start_help"))
 
 def main():
-    global LAST_RESULT
+    global LAST_RESULT, PREV_STATE, NET_ALIVE
     flush_old_updates()
     res = check_all()
     LAST_RESULT = res
@@ -313,8 +370,8 @@ def main():
             if first_alive(res)
             else tr("started_down"))
     tg(head + "\n" + status_lines(res) + "\n\n" + tr("command_hint"))
-    prev      = {n: r["ok"] for n, r in res.items()}
-    net_alive = any(prev.values())
+    PREV_STATE = {n: r["ok"] for n, r in res.items()}
+    NET_ALIVE = any(PREV_STATE.values())
     cycles    = 0
     while True:
         for _ in range(CHECK_EVERY // 15):
@@ -323,23 +380,7 @@ def main():
         cycles += 1
         try:
             handle_commands(LAST_RESULT)
-            res = check_all()
-            LAST_RESULT = res
-            cur = {n: r["ok"] for n, r in res.items()}
-            for n in cur:
-                if cur[n] != prev.get(n):
-                    if cur[n]:
-                        tg(tr("node_up", name=n, block=res[n]["block"], ms=res[n]["ms"]))
-                    else:
-                        tg(tr("node_down", name=n, err=res[n]["err"]))
-            now_net = any(cur.values())
-            if now_net != net_alive:
-                if now_net:
-                    tg(tr("network_up", name=first_alive(res)))
-                else:
-                    tg(tr("network_down"))
-                net_alive = now_net
-            prev = cur
+            res = check_and_alert()
             if cycles % HEARTBEAT_EVERY == 0:
                 tg(tr("heartbeat", cycles=cycles) + status_lines(res))
         except Exception as e:
