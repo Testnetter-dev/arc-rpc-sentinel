@@ -1,4 +1,5 @@
 import json
+import html
 import os
 import sys
 import time
@@ -32,8 +33,8 @@ LANG_SET      = False
 
 STR = {
     "en": {
-        "node_ok": "🟢 {name}: block {block}, {ms} ms",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · block {block} · {ms} ms",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "No nodes in list!",
         "status_header": "📡 Arc node status:\n",
         "start_help": "Sentinel v2.5. Commands: /status — dashboard; /ping — check now; /best — fastest; /lang xx — language; /help — this help",
@@ -48,12 +49,12 @@ STR = {
         "heartbeat": "💓 Sentinel alive, cycle #{cycles}\n",
         "lang_bad": "Unknown language. Available codes: {codes}",
         "lang_cur": "Current language: {lang}. Available codes: {codes}",
-        "best_ok": "⚡ Fastest node: {name} — {ms} ms (block {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} ms</code> (block {block})",
         "best_none": "No alive nodes right now.",
     },
     "ru": {
-        "node_ok": "🟢 {name}: блок {block}, {ms} мс",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · блок {block} · {ms} мс",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "Список нод пуст!",
         "status_header": "📡 Статус нод Arc:\n",
         "start_help": "Я Sentinel v2.5. Команды: /status — дашборд; /ping — проверка; /best — самая быстрая; /lang xx — язык; /help — помощь",
@@ -68,12 +69,12 @@ STR = {
         "heartbeat": "💓 Sentinel жив, цикл #{cycles}\n",
         "lang_bad": "Неверный язык. Доступные коды: {codes}",
         "lang_cur": "Текущий язык: {lang}. Доступные коды: {codes}",
-        "best_ok": "⚡ Самая быстрая нода: {name} — {ms} мс (блок {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} мс</code> (блок {block})",
         "best_none": "Сейчас нет живых нод.",
     },
     "zh": {
-        "node_ok": "🟢 {name}：区块 {block}，{ms} 毫秒",
-        "node_bad": "🔴 {name}：{err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · 区块 {block} · {ms} 毫秒",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "节点列表为空！",
         "status_header": "📡 Arc 节点状态：\n",
         "start_help": "Sentinel v2.5。命令：/status — 面板；/ping — 立即检查；/best — 最快；/lang xx — 语言；/help — 帮助",
@@ -88,12 +89,12 @@ STR = {
         "heartbeat": "💓 Sentinel 运行正常，周期 #{cycles}\n",
         "lang_bad": "未知语言。可用代码：{codes}",
         "lang_cur": "当前语言：{lang}。可用代码：{codes}",
-        "best_ok": "⚡ 最快节点：{name} — {ms} 毫秒（区块 {block}）",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} 毫秒</code>（区块 {block}）",
         "best_none": "当前没有可用节点。",
     },
     "hi": {
-        "node_ok": "🟢 {name}: ब्लॉक {block}, {ms} मि.से.",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · ब्लॉक {block} · {ms} मि.से.",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "नोड सूची खाली है!",
         "status_header": "📡 Arc नोड स्थिति:\n",
         "start_help": "Sentinel v2.5। कमांड: /status — डैशबोर्ड; /ping — अभी जांचें; /best — सबसे तेज; /lang xx — भाषा; /help — मदद",
@@ -108,12 +109,12 @@ STR = {
         "heartbeat": "💓 Sentinel चालू है, चक्र #{cycles}\n",
         "lang_bad": "अज्ञात भाषा। उपलब्ध कोड: {codes}",
         "lang_cur": "वर्तमान भाषा: {lang}। उपलब्ध कोड: {codes}",
-        "best_ok": "⚡ सबसे तेज नोड: {name} — {ms} मि.से. (ब्लॉक {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} मि.से.</code> (ब्लॉक {block})",
         "best_none": "अभी कोई सक्रिय नोड नहीं है।",
     },
     "es": {
-        "node_ok": "🟢 {name}: bloque {block}, {ms} ms",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · bloque {block} · {ms} ms",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "¡La lista de nodos está vacía!",
         "status_header": "📡 Estado de los nodos Arc:\n",
         "start_help": "Sentinel v2.5. Comandos: /status — panel; /ping — comprobar ahora; /best — más rápido; /lang xx — idioma; /help — ayuda",
@@ -128,12 +129,12 @@ STR = {
         "heartbeat": "💓 Sentinel activo, ciclo #{cycles}\n",
         "lang_bad": "Idioma desconocido. Códigos disponibles: {codes}",
         "lang_cur": "Idioma actual: {lang}. Códigos disponibles: {codes}",
-        "best_ok": "⚡ Nodo más rápido: {name} — {ms} ms (bloque {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} ms</code> (bloque {block})",
         "best_none": "No hay nodos activos ahora mismo.",
     },
     "fr": {
-        "node_ok": "🟢 {name} : bloc {block}, {ms} ms",
-        "node_bad": "🔴 {name} : {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · bloc {block} · {ms} ms",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "La liste des nœuds est vide !",
         "status_header": "📡 État des nœuds Arc :\n",
         "start_help": "Sentinel v2.5. Commandes : /status — tableau ; /ping — vérifier ; /best — plus rapide ; /lang xx — langue ; /help — aide",
@@ -148,12 +149,12 @@ STR = {
         "heartbeat": "💓 Sentinel est actif, cycle n°{cycles}\n",
         "lang_bad": "Langue inconnue. Codes disponibles : {codes}",
         "lang_cur": "Langue actuelle : {lang}. Codes disponibles : {codes}",
-        "best_ok": "⚡ Nœud le plus rapide : {name} — {ms} ms (bloc {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} ms</code> (bloc {block})",
         "best_none": "Aucun nœud actif pour le moment.",
     },
     "ar": {
-        "node_ok": "🟢 {name}: الكتلة {block}، {ms} مللي ثانية",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · الكتلة {block} · {ms} مللي ثانية",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "قائمة العقد فارغة!",
         "status_header": "📡 حالة عقد Arc:\n",
         "start_help": "Sentinel v2.5. الأوامر: /status — اللوحة؛ /ping — فحص الآن؛ /best — الأسرع؛ /lang xx — اللغة؛ /help — المساعدة",
@@ -168,12 +169,12 @@ STR = {
         "heartbeat": "💓 Sentinel يعمل، الدورة #{cycles}\n",
         "lang_bad": "لغة غير معروفة. الرموز المتاحة: {codes}",
         "lang_cur": "اللغة الحالية: {lang}. الرموز المتاحة: {codes}",
-        "best_ok": "⚡ أسرع عقدة: {name} — {ms} مللي ثانية (الكتلة {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} مللي ثانية</code> (الكتلة {block})",
         "best_none": "لا توجد عقدة متصلة الآن.",
     },
     "pt": {
-        "node_ok": "🟢 {name}: bloco {block}, {ms} ms",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · bloco {block} · {ms} ms",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "A lista de nós está vazia!",
         "status_header": "📡 Status dos nós Arc:\n",
         "start_help": "Sentinel v2.5. Comandos: /status — painel; /ping — verificar agora; /best — mais rápido; /lang xx — idioma; /help — ajuda",
@@ -188,12 +189,12 @@ STR = {
         "heartbeat": "💓 Sentinel ativo, ciclo #{cycles}\n",
         "lang_bad": "Idioma desconhecido. Códigos disponíveis: {codes}",
         "lang_cur": "Idioma atual: {lang}. Códigos disponíveis: {codes}",
-        "best_ok": "⚡ Nó mais rápido: {name} — {ms} ms (bloco {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} ms</code> (bloco {block})",
         "best_none": "Não há nós ativos no momento.",
     },
     "ja": {
-        "node_ok": "🟢 {name}: ブロック {block}、{ms} ms",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · ブロック {block} · {ms} ms",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "ノード一覧が空です！",
         "status_header": "📡 Arc ノードの状態：\n",
         "start_help": "Sentinel v2.5。コマンド：/status — ダッシュボード；/ping — 今すぐ確認；/best — 最速；/lang xx — 言語；/help — ヘルプ",
@@ -208,12 +209,12 @@ STR = {
         "heartbeat": "💓 Sentinel は稼働中、サイクル #{cycles}\n",
         "lang_bad": "不明な言語です。利用可能なコード：{codes}",
         "lang_cur": "現在の言語：{lang}。利用可能なコード：{codes}",
-        "best_ok": "⚡ 最速ノード：{name} — {ms} ms（ブロック {block}）",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} ms</code>（ブロック {block}）",
         "best_none": "現在、稼働中のノードはありません。",
     },
     "de": {
-        "node_ok": "🟢 {name}: Block {block}, {ms} ms",
-        "node_bad": "🔴 {name}: {err}",
+        "node_ok": "🟢 <a href=\"{url}\">{name}</a> · Block {block} · {ms} ms",
+        "node_bad": "🔴 <a href=\"{url}\">{name}</a> · {err}",
         "nodes_empty": "Die Node-Liste ist leer!",
         "status_header": "📡 Arc-Node-Status:\n",
         "start_help": "Sentinel v2.5. Befehle: /status — Dashboard; /ping — jetzt prüfen; /best — schnellste; /lang xx — Sprache; /help — Hilfe",
@@ -228,13 +229,27 @@ STR = {
         "heartbeat": "💓 Sentinel läuft, Zyklus #{cycles}\n",
         "lang_bad": "Unbekannte Sprache. Verfügbare Codes: {codes}",
         "lang_cur": "Aktuelle Sprache: {lang}. Verfügbare Codes: {codes}",
-        "best_ok": "⚡ Schnellste Node: {name} — {ms} ms (Block {block})",
+        "best_ok": "⚡ <b><a href=\"{url}\">{name}</a></b> — <code>{ms} ms</code> (Block {block})",
         "best_none": "Derzeit sind keine Nodes aktiv.",
     },
 }
 
 def tr(key, **values):
     return STR[CURRENT_LANG][key].format(**values)
+
+MAIN_KEYBOARD = {
+    "inline_keyboard": [
+        [
+            {"text": "📡 Status", "callback_data": "status"},
+            {"text": "⚡ Ping", "callback_data": "ping"},
+            {"text": "🏆 Best", "callback_data": "best"},
+        ],
+        [
+            {"text": "🇷🇺 RU", "callback_data": "lang_ru"},
+            {"text": "🇬🇧 EN", "callback_data": "lang_en"},
+        ],
+    ]
+}
 
 def _post(url, payload):
     body = json.dumps(payload).encode()
@@ -252,12 +267,24 @@ def ping(url):
         raise RuntimeError("bad response")
     return int(data["result"], 16), int((time.time() - t0) * 1000)
 
-def tg(text):
+def tg(text, reply_markup=None):
     try:
+        payload = {"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"}
+        if reply_markup is not None:
+            payload["reply_markup"] = reply_markup
         _post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-              {"chat_id": CHAT_ID, "text": text})
+              payload)
     except Exception as e:
         print("TG send error:", e)
+
+def answer_callback(callback_id):
+    if not callback_id:
+        return
+    try:
+        _post(f"https://api.telegram.org/bot{BOT_TOKEN}/answerCallbackQuery",
+              {"callback_query_id": callback_id})
+    except Exception as e:
+        print("TG callback error:", e)
 
 def check_all():
     out = {}
@@ -271,14 +298,21 @@ def check_all():
     return out
 
 def status_lines(res):
-    lines = []
+    lines = [f"<b>{html.escape(tr('status_header').strip())}</b>", "--------------------"]
     for name, r in res.items():
+        values = {
+            "url": html.escape(NODES[name], quote=True),
+            "name": html.escape(name),
+        }
         if r["ok"]:
-            lines.append(tr("node_ok", name=name, block=r["block"], ms=r["ms"]))
+            values.update(block=r["block"], ms=r["ms"])
+            lines.append(tr("node_ok", **values))
         else:
-            lines.append(tr("node_bad", name=name, err=r["err"]))
-        lines.append(f"🔗 {NODES[name]}")
-    return "\n".join(lines) if lines else tr("nodes_empty")
+            values["err"] = html.escape(str(r["err"]))
+            lines.append(tr("node_bad", **values))
+    if not res:
+        lines.append(tr("nodes_empty"))
+    return "\n".join(lines)
 
 def first_alive(res):
     for name, r in res.items():
@@ -307,6 +341,24 @@ def check_and_alert():
     PREV_STATE = cur
     return res
 
+def send_best():
+    alive = [
+        (r["ms"], name, r["block"])
+        for name, r in LAST_RESULT.items()
+        if r["ok"]
+    ]
+    if alive:
+        ms, name, block = min(alive)
+        tg(tr(
+            "best_ok",
+            name=html.escape(name),
+            url=html.escape(NODES[name], quote=True),
+            ms=ms,
+            block=block,
+        ))
+    else:
+        tg(tr("best_none"))
+
 def flush_old_updates():
     global UPDATE_OFFSET
     try:
@@ -331,26 +383,38 @@ def handle_commands(res):
         return
     for up in data.get("result", []):
         UPDATE_OFFSET = up["update_id"] + 1
+        callback = up.get("callback_query")
+        if callback:
+            msg = callback.get("message") or {}
+            chat = (msg.get("chat") or {}).get("id")
+            action = callback.get("data")
+            if str(chat) == str(CHAT_ID):
+                answer_callback(callback.get("id"))
+                if action == "status":
+                    tg(status_lines(LAST_RESULT))
+                elif action == "ping":
+                    tg(status_lines(check_and_alert()))
+                elif action == "best":
+                    send_best()
+                elif action == "lang_ru":
+                    CURRENT_LANG = "ru"
+                    LANG_SET = True
+                    tg(tr("lang_cur", lang=CURRENT_LANG, codes=", ".join(STR.keys())))
+                elif action == "lang_en":
+                    CURRENT_LANG = "en"
+                    LANG_SET = True
+                    tg(tr("lang_cur", lang=CURRENT_LANG, codes=", ".join(STR.keys())))
+            continue
         msg  = up.get("message") or {}
         chat = (msg.get("chat") or {}).get("id")
         text = (msg.get("text") or "").strip()
         if str(chat) == str(CHAT_ID):
             if text == "/status":
-                tg(tr("status_header") + status_lines(LAST_RESULT))
+                tg(status_lines(LAST_RESULT))
             elif text == "/ping":
-                res = check_and_alert()
-                tg(tr("status_header") + status_lines(res))
+                tg(status_lines(check_and_alert()))
             elif text == "/best":
-                alive = [
-                    (r["ms"], name, r["block"])
-                    for name, r in LAST_RESULT.items()
-                    if r["ok"]
-                ]
-                if alive:
-                    ms, name, block = min(alive)
-                    tg(tr("best_ok", name=name, ms=ms, block=block) + "\n🔗 " + NODES[name])
-                else:
-                    tg(tr("best_none"))
+                send_best()
             elif text == "/lang" or text.startswith("/lang "):
                 parts = text.split()
                 codes = ", ".join(STR.keys())
@@ -370,7 +434,7 @@ def handle_commands(res):
                     if sender_lang in STR:
                         CURRENT_LANG = sender_lang
                         LANG_SET = True
-                tg(tr("start_help") + "\n" + tr("credit"))
+                tg(tr("start_help") + "\n" + tr("credit"), MAIN_KEYBOARD)
 
 def main():
     global LAST_RESULT, PREV_STATE, NET_ALIVE
