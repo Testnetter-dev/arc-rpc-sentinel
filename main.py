@@ -37,6 +37,7 @@ STR = {
         "nodes_empty": "No nodes in list!",
         "status_header": "📡 Arc node status:\n",
         "start_help": "Sentinel v2.5. Commands: /status — dashboard; /ping — check now; /best — fastest; /lang xx — language; /help — this help",
+        "credit": "👤 Created by testnetter",
         "started_alive": "🟢 Sentinel v2.5 started!",
         "started_down": "🟡 Sentinel v2.5 started, but ALL nodes are down!",
         "command_hint": "Command: /status",
@@ -56,6 +57,7 @@ STR = {
         "nodes_empty": "Список нод пуст!",
         "status_header": "📡 Статус нод Arc:\n",
         "start_help": "Я Sentinel v2.5. Команды: /status — дашборд; /ping — проверка; /best — самая быстрая; /lang xx — язык; /help — помощь",
+        "credit": "👤 Создатель: testnetter",
         "started_alive": "🟢 Sentinel v2.5 запущен!",
         "started_down": "🟡 Sentinel v2.5 запущен, но ВСЕ ноды уже лежат!",
         "command_hint": "Команда: /status",
@@ -75,6 +77,7 @@ STR = {
         "nodes_empty": "节点列表为空！",
         "status_header": "📡 Arc 节点状态：\n",
         "start_help": "Sentinel v2.5。命令：/status — 面板；/ping — 立即检查；/best — 最快；/lang xx — 语言；/help — 帮助",
+        "credit": "👤 创作者: testnetter",
         "started_alive": "🟢 Sentinel v2.5 已启动！",
         "started_down": "🟡 Sentinel v2.5 已启动，但所有节点都已宕机！",
         "command_hint": "命令：/status",
@@ -94,6 +97,7 @@ STR = {
         "nodes_empty": "नोड सूची खाली है!",
         "status_header": "📡 Arc नोड स्थिति:\n",
         "start_help": "Sentinel v2.5। कमांड: /status — डैशबोर्ड; /ping — अभी जांचें; /best — सबसे तेज; /lang xx — भाषा; /help — मदद",
+        "credit": "👤 निर्माता: testnetter",
         "started_alive": "🟢 Sentinel v2.5 शुरू हो गया!",
         "started_down": "🟡 Sentinel v2.5 शुरू हो गया, लेकिन सभी नोड बंद हैं!",
         "command_hint": "कमांड: /status",
@@ -113,6 +117,7 @@ STR = {
         "nodes_empty": "¡La lista de nodos está vacía!",
         "status_header": "📡 Estado de los nodos Arc:\n",
         "start_help": "Sentinel v2.5. Comandos: /status — panel; /ping — comprobar ahora; /best — más rápido; /lang xx — idioma; /help — ayuda",
+        "credit": "👤 Creado por testnetter",
         "started_alive": "🟢 ¡Sentinel v2.5 iniciado!",
         "started_down": "🟡 Sentinel v2.5 iniciado, ¡pero todos los nodos están caídos!",
         "command_hint": "Comando: /status",
@@ -132,6 +137,7 @@ STR = {
         "nodes_empty": "La liste des nœuds est vide !",
         "status_header": "📡 État des nœuds Arc :\n",
         "start_help": "Sentinel v2.5. Commandes : /status — tableau ; /ping — vérifier ; /best — plus rapide ; /lang xx — langue ; /help — aide",
+        "credit": "👤 Créé par testnetter",
         "started_alive": "🟢 Sentinel v2.5 est lancé !",
         "started_down": "🟡 Sentinel v2.5 est lancé, mais tous les nœuds sont hors service !",
         "command_hint": "Commande : /status",
@@ -151,6 +157,7 @@ STR = {
         "nodes_empty": "قائمة العقد فارغة!",
         "status_header": "📡 حالة عقد Arc:\n",
         "start_help": "Sentinel v2.5. الأوامر: /status — اللوحة؛ /ping — فحص الآن؛ /best — الأسرع؛ /lang xx — اللغة؛ /help — المساعدة",
+        "credit": "👤 أنشأه testnetter",
         "started_alive": "🟢 تم تشغيل Sentinel v2.5!",
         "started_down": "🟡 تم تشغيل Sentinel v2.5، لكن جميع العقد متوقفة!",
         "command_hint": "الأمر: /status",
@@ -170,6 +177,7 @@ STR = {
         "nodes_empty": "A lista de nós está vazia!",
         "status_header": "📡 Status dos nós Arc:\n",
         "start_help": "Sentinel v2.5. Comandos: /status — painel; /ping — verificar agora; /best — mais rápido; /lang xx — idioma; /help — ajuda",
+        "credit": "👤 Criado por testnetter",
         "started_alive": "🟢 Sentinel v2.5 iniciado!",
         "started_down": "🟡 Sentinel v2.5 iniciado, mas todos os nós estão fora do ar!",
         "command_hint": "Comando: /status",
@@ -189,6 +197,7 @@ STR = {
         "nodes_empty": "ノード一覧が空です！",
         "status_header": "📡 Arc ノードの状態：\n",
         "start_help": "Sentinel v2.5。コマンド：/status — ダッシュボード；/ping — 今すぐ確認；/best — 最速；/lang xx — 言語；/help — ヘルプ",
+        "credit": "👤 作者: testnetter",
         "started_alive": "🟢 Sentinel v2.5 を起動しました！",
         "started_down": "🟡 Sentinel v2.5 を起動しましたが、すべてのノードが停止中です！",
         "command_hint": "コマンド：/status",
@@ -208,6 +217,7 @@ STR = {
         "nodes_empty": "Die Node-Liste ist leer!",
         "status_header": "📡 Arc-Node-Status:\n",
         "start_help": "Sentinel v2.5. Befehle: /status — Dashboard; /ping — jetzt prüfen; /best — schnellste; /lang xx — Sprache; /help — Hilfe",
+        "credit": "👤 Erstellt von testnetter",
         "started_alive": "🟢 Sentinel v2.5 gestartet!",
         "started_down": "🟡 Sentinel v2.5 gestartet, aber ALLE Nodes sind ausgefallen!",
         "command_hint": "Befehl: /status",
@@ -359,7 +369,7 @@ def handle_commands(res):
                     if sender_lang in STR:
                         CURRENT_LANG = sender_lang
                         LANG_SET = True
-                tg(tr("start_help"))
+                tg(tr("start_help") + "\n" + tr("credit"))
 
 def main():
     global LAST_RESULT, PREV_STATE, NET_ALIVE
@@ -369,7 +379,7 @@ def main():
     head = (tr("started_alive")
             if first_alive(res)
             else tr("started_down"))
-    tg(head + "\n" + status_lines(res) + "\n\n" + tr("command_hint"))
+    tg(head + "\n" + status_lines(res) + "\n\n" + tr("command_hint") + "\n" + tr("credit"))
     PREV_STATE = {n: r["ok"] for n, r in res.items()}
     NET_ALIVE = any(PREV_STATE.values())
     cycles    = 0
