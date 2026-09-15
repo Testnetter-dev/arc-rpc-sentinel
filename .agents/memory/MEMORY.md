@@ -1,0 +1,1 @@
+- [GitHub push authentication](github-push-auth.md) — an attached GitHub App connection may still fail for both Replit HTTPS askpass and SSH pushes.
