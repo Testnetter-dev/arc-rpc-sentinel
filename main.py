@@ -254,15 +254,24 @@ MAIN_KEYBOARD = {
 def _post(url, payload):
     body = json.dumps(payload).encode()
     req = urllib.request.Request(
-        url, data=body, headers={"Content-Type": "application/json"}
+        url,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "arc-rpc-sentinel/2.6",
+        },
     )
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
         return json.load(r)
 
 def ping(url):
     t0 = time.time()
-    data = _post(url, {"jsonrpc": "2.0", "method": "eth_blockNumber",
-                       "params": [], "id": 1})
+    data = _post(url, {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_blockNumber",
+        "params": [],
+    })
     if "result" not in data:
         raise RuntimeError("bad response")
     return int(data["result"], 16), int((time.time() - t0) * 1000)
